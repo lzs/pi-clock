@@ -14,13 +14,16 @@ body {
 }
 
 .clock {
+    width: 100%;
     position: absolute;
     top: 50%;
-    width: 100%;
-    color: #17D4FE;
-    font-family: 'Share Tech Mono';
-    font-size: 60px;
     text-align: center;
+    color: #17D4FE;
+    font-size: 20vw;
     transform: translateY(-50%);
 }
 
+#hour, #min, #sec {
+    font-size: 25vw;
+    font-weight: bold;
+}
