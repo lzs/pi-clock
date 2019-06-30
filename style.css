@@ -19,6 +19,7 @@ body {
     top: 50%;
     text-align: center;
     color: #17D4FE;
+    font-family: 'Share Tech Mono';
     font-size: 20vw;
     transform: translateY(-50%);
 }
