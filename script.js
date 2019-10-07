@@ -1,33 +1,77 @@
-function showTime(){
-    var date = new Date();
-    var h = date.getHours();
-    var m = date.getMinutes();
-    var s = date.getSeconds();
-    var ms = date.getMilliseconds();
+
+var mode = 'timer';
+
+function showTime() {
     var timer = 1000;
 
-    if(h == 0){
-        h = 12;
-    }
+    // Just hardcode a future date for testing
+    var countDownTime = '2020-07-19T00:00:00';
 
-    h = (h < 10) ? "0" + h : h;
-    m = (m < 10) ? "0" + m : m;
-    s = (s < 10) ? "0" + s : s;
+    var now = new Date();
+    var ms = now.getMilliseconds();
+
+    if (mode == 'clock') {
+
+        var h = now.getHours();
+        var m = now.getMinutes();
+        var s = now.getSeconds();
+
+        if(h == 0){
+            h = 12;
+        }
+
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+    }
+    else if (mode == 'timer') {
+        var timeOver = 0;
+
+        var distance = new Date(countDownTime).getTime() - now.getTime();
+        if (distance < 0) {
+            distance = Math.abs(distance);
+            timeOver = 1;
+        }
+        else {
+            distance += 1000;
+        }
+        h = Math.floor(distance / (1000 * 60 * 60));
+        m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+        document.getElementById("sign").innerText = timeOver ? "+" : "-";
+    }
 
     document.getElementById("hour").innerText = h;
     document.getElementById("min").innerText = m;
     document.getElementById("sec").innerText = s;
 
+    setTimeout(resizeText, 50);
+
     // Trying to do something clever here to ensure we update the time roughly within
-    // 100ms within the turn of the second
-    if (ms < 900) {
-        timer = 1000 - ms - 100;
+    // 100ms of the turn of the second
+
+    if (ms < 990) {
+        timer = 1000 - ms;
     }
     else {
-        timer = 100;
+        timer = 10;
     }
 
     setTimeout(showTime, timer);
 }
 
-showTime();
+function resizeText() {
+    var viewWidth = $('#TextContainer').width();
+    var textSize = $('#TextCell').css('font-size');
+    var textWidth = $('#TextCell').width();
+    textSize = textSize.substring(0, textSize.length - 2);
+
+    if (Math.abs(viewWidth - textWidth) / viewWidth > 0.1) {
+        var newTextSize = viewWidth / textWidth * textSize * 0.95;
+        $('#TextCell').css('font-size', newTextSize + 'px');
+        $('#TextCell').css('visibility', 'visible');
+    }
+}

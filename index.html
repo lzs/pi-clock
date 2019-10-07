@@ -2,22 +2,24 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-
   <title>Pi Clock</title>
+
+  <meta charset="utf-8">
   <meta name="description" content="Pi Clock">
   <meta name="author" content="lzs">
 
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body onload="showTime()">
 
-<div id="MyClockDisplay" class="clock">
-    <span id="hour"></span>:<span id="min"></span>:<span id="sec"></span>
+<div id="TextContainer" class="clock">
+    <div id="TextCell">
+    <span id="sign"></span><span id="hour"></span><span>:</span><span id="min"></span><span>:</span><span id="sec"></span>
+    </div>
 </div>
 
+<script src="js/jquery-3.4.1.min.js"></script>
 <script src="script.js"></script>
 
 </body>

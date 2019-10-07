@@ -11,20 +11,32 @@
 body {
     margin: 0;
     background: black;
+    color: white;
 }
 
-.clock {
+#TextContainer {
     width: 100%;
     position: absolute;
     top: 50%;
     text-align: center;
     color: #17D4FE;
-    font-size: 20vw;
     transform: translateY(-50%);
 }
 
 #hour, #min, #sec {
     font-family: "Share Tech Mono";
-    font-size: 25vw;
+    font-size: 120%;
     font-weight: bold;
 }
+
+#sign {
+    font-family: "Share Tech Mono";
+    font-size: 120%;
+}
+
+#TextCell {
+    font-size: 100%;
+    display: inline;
+    visibility: hidden;
+}
+
