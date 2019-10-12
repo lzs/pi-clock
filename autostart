@@ -4,8 +4,6 @@ xset s noblank
 xset s off
 xset -dpms
 
-unclutter -idle 0.5 -root &
-
 nohup python3 -m http.server --directory /home/pi/pi-clock/ --bind 127.0.0.1 8080 &
 
 # Tricking Chrome to think it exited cleanly
