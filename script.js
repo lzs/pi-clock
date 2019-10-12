@@ -1,11 +1,11 @@
 
 var mode = 'timer';
+var countDownTime = '2020-07-19T00:00:00';
 
 function showTime() {
     var timer = 1000;
 
     // Just hardcode a future date for testing
-    var countDownTime = '2020-07-19T00:00:00';
 
     var now = new Date();
     var ms = now.getMilliseconds();
@@ -71,3 +71,10 @@ function resizeText() {
         $('#TextCell').css('visibility', 'visible');
     }
 }
+
+$.getJSON("config.json", function(data) {
+    mode = data.mode;
+    if (data.mode == 'timer') {
+        countDownTime = data.countDownTime;
+    }
+});
