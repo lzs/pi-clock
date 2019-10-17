@@ -31,3 +31,5 @@ cp -r index.html js script.js style.css ~/pi-clock
 mkdir -p ~/.config/openbox
 cp autostart ~/.config/openbox/
 
+# Install crontab for checking health
+(crontab -l 2>/dev/null | grep -v "bin/checkhealth.sh"; echo "* * * * * bin/checkhealth.sh") | crontab -
