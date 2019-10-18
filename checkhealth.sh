@@ -6,7 +6,10 @@ if [ "x$GATEWAY" = "x" ] ; then
     logger "HEALTHCHECK: No gateway found."
     echo `date` >> /tmp/checkhealth
 elif ping -c3 "$GATEWAY" > /dev/null 2>&1; then
-    cp /dev/null /tmp/checkhealth
+    if [ `cat /tmp/checkhealth | wc -l` -gt 0 ]; then
+        cp /dev/null /tmp/checkhealth
+        xdotool key ctrl+r
+    fi
 else
     echo `date` >> /run/checkhealth
     if [ `cat /tmp/checkhealth | wc -l` -gt 3 ]; then
