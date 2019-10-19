@@ -34,15 +34,16 @@ function showTime() {
 
         var distance = new Date(countDownTime).getTime() - now.getTime();
         if (distance < 0) {
-            distance = Math.abs(distance);
+            distance = Math.floor(Math.abs(distance) / 1000);
             timeOver = 1;
         }
         else {
-            distance += 1000;
+            distance = Math.ceil(distance / 1000);
         }
-        h = Math.floor(distance / (1000 * 60 * 60));
-        m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        h = Math.floor(distance / (60 * 60));
+        m = Math.floor((distance % (60 * 60)) / 60);
+        s = distance % 60;
 
         m = (m < 10) ? "0" + m : m;
         s = (s < 10) ? "0" + s : s;
