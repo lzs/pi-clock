@@ -1,5 +1,5 @@
 
-var mode = 'timer';
+var mode = 'clock';
 var countDownTime = '2020-07-19T00:00:00';
 
 function showTime() {
