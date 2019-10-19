@@ -2,6 +2,10 @@
 var mode = 'clock';
 var countDownTime = '2020-07-19T00:00:00';
 
+var lastmode = '';
+var lastViewWidth;
+var lastHour;
+
 function showTime() {
     var timer = 1000;
 
@@ -9,6 +13,11 @@ function showTime() {
 
     var now = new Date();
     var ms = now.getMilliseconds();
+
+    if (mode != lastmode) {
+        lastmode = mode;
+        lastViewWidth = 0;
+    }
 
     if (mode == 'clock') {
 
@@ -38,13 +47,28 @@ function showTime() {
         m = (m < 10) ? "0" + m : m;
         s = (s < 10) ? "0" + s : s;
         document.getElementById("sign").innerText = timeOver ? "+" : "-";
+
+        if (h != lastHour) {
+            lastHour = h;
+
+            if (h == 0) {
+                $('#hour').css('display', 'none');
+                $('#hoursep').css('display', 'none');
+                $('#sec').css('font-size', '120%');
+            }
+            else {
+                $('#hour').css('display', 'inline');
+                $('#hoursep').css('display', 'inline');
+                $('#sec').css('font-size', '100%');
+            }
+
+            lastViewWidth = 0;
+        }
     }
 
     document.getElementById("hour").innerText = h;
     document.getElementById("min").innerText = m;
     document.getElementById("sec").innerText = s;
-
-    setTimeout(resizeText, 50);
 
     // Trying to do something clever here to ensure we update the time roughly within
     // 100ms of the turn of the second
@@ -57,10 +81,20 @@ function showTime() {
     }
 
     setTimeout(showTime, timer);
+
+    //setTimeout(resizeText, 50);
+    resizeText();
 }
 
 function resizeText() {
     var viewWidth = $('#TextContainer').width();
+
+    if (viewWidth == lastViewWidth) {
+        return;
+    }
+
+    lastViewWidth = viewWidth;
+
     var textSize = $('#TextCell').css('font-size');
     var textWidth = $('#TextCell').width();
     textSize = textSize.substring(0, textSize.length - 2);
@@ -78,3 +112,4 @@ $.getJSON("config.json", function(data) {
         countDownTime = data.countDownTime;
     }
 });
+
