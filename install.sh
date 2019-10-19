@@ -26,7 +26,7 @@ done
 cp bash_profile ~/.bash_profile
 
 mkdir ~/pi-clock
-cp -r index.html js script.js style.css ~/pi-clock
+cp -r index.html config.json.dist js script.js style.css ~/pi-clock
 
 mkdir -p ~/.config/openbox
 cp autostart ~/.config/openbox/
