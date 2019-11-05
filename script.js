@@ -1,6 +1,7 @@
 
 var mode = 'clock';
 var countDownTime = '2020-07-19T00:00:00';
+var burnProtect = 1;
 
 var lastmode = '';
 var lastViewWidth;
@@ -28,6 +29,10 @@ function showTime() {
         h = (h < 10) ? "0" + h : h;
         m = (m < 10) ? "0" + m : m;
         s = (s < 10) ? "0" + s : s;
+        if (burnProtect) {
+            var offset = Math.sin(m / 60 * 2 * Math.PI) * 6 + 47;
+            $('#TextContainer').css('top', offset + '%');
+        }
     }
     else if (mode == 'timer') {
         var timeOver = 0;
