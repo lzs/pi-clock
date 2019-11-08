@@ -113,9 +113,14 @@ function resizeText() {
 }
 
 $.getJSON("config.json", function(data) {
-    mode = data.mode;
-    if (data.mode == 'timer') {
-        countDownTime = data.countDownTime;
+    if ('mode' in data) {
+        mode = data.mode;
+        if ('countDownTime' in data && data.mode == 'timer') {
+            countDownTime = data.countDownTime;
+        }
+    }
+    if ('burnProtect' in data) {
+        burnProtect = data.burnProtect;
     }
 });
 
