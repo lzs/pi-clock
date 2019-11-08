@@ -23,12 +23,47 @@ while getopts "h?y" opt; do
     esac
 done
 
+if test -f ~/.bash_profile; then
+    if [ $yes -eq 0 ]; then
+        read -p "Overwrite existing .bash_profile? " -n 1 PROMPT
+        echo
+        if [[ ! $PROMPT =~ ^[Yy]$ ]]; then
+            echo Aborted.
+            exit 1
+        fi
+    fi
+fi
+
 cp bash_profile ~/.bash_profile
 
-mkdir ~/pi-clock
+if test -d ~/pi-clock; then
+    if [ $yes -eq 0 ]; then
+        read -p "Reuse existing ~/pi-clock directory? " -n 1 PROMPT
+        echo
+        if [[ ! $PROMPT =~ ^[Yy]$ ]]; then
+            echo Aborted.
+            exit 1
+        fi
+    fi
+else
+    mkdir ~/pi-clock
+fi
+
 cp -r index.html config.json.dist js script.js style.css ~/pi-clock
 
-mkdir -p ~/.config/openbox
+if test -d ~/.config/openbox; then
+    if [ $yes -eq 0 ]; then
+        read -p "Reuse existing ~/.config/openbox directory? " -n 1 PROMPT
+        echo
+        if [[ ! $PROMPT =~ ^[Yy]$ ]]; then
+            echo Aborted.
+            exit 1
+        fi
+    fi
+else
+    mkdir -p ~/.config/openbox
+fi
+
 cp autostart ~/.config/openbox/
 
 # Install crontab for checking health
