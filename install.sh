@@ -49,7 +49,7 @@ else
     mkdir ~/pi-clock
 fi
 
-cp -r index.html config.json.dist js script.js style.css ~/pi-clock
+cp -r index.html config.json.dist js script.js style.css fonts ~/pi-clock
 
 if test -d ~/.config/openbox; then
     if [ $yes -eq 0 ]; then
