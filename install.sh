@@ -68,6 +68,9 @@ mkdir -p ~/.config/lxsession/LXDE-pi
 cp autostart ~/.config/lxsession/LXDE-pi/autostart
 chmod 755 ~/.config/lxsession/LXDE-pi/autostart
 
+# Install unclutter to remove mouse pointer
+sudo apt install -y unclutter
+
 # Install crontab for checking health
 (crontab -l 2>/dev/null | grep -v "bin/checkhealth.sh"; echo "* * * * * bin/checkhealth.sh") | crontab -
 
