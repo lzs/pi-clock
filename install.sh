@@ -70,3 +70,9 @@ chmod 755 ~/.config/lxsession/LXDE-pi/autostart
 
 # Install crontab for checking health
 (crontab -l 2>/dev/null | grep -v "bin/checkhealth.sh"; echo "* * * * * bin/checkhealth.sh") | crontab -
+
+# Set SSH enabled
+sudo raspi-config nonint do_ssh 0
+
+# Set GUI autologin
+sudo raspi-config nonint do_boot_behaviour B4

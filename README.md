@@ -9,7 +9,7 @@ Things to configure on Raspberry Pi itself.
 sudo raspi-config
 
  - In Interfacing Options, enable SSH
- - In Boot Options, enable Console Autologin
+ - In Boot Options, enable GUI Autologin
 
 ## References
 
