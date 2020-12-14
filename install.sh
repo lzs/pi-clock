@@ -76,3 +76,6 @@ sudo raspi-config nonint do_ssh 0
 
 # Set GUI autologin
 sudo raspi-config nonint do_boot_behaviour B4
+
+# Overscan if need
+sudo raspi-config nonint do_overscan 1
