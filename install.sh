@@ -79,3 +79,6 @@ sudo raspi-config nonint do_boot_behaviour B4
 
 # Overscan if need
 sudo raspi-config nonint do_overscan 1
+
+# Set timezone
+sudo raspi-config nonint do_change_timezone Asia/Singapore
